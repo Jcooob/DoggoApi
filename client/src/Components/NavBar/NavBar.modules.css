@@ -1,0 +1,181 @@
+.NavBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #181818;
+    padding-block: 50px;
+    font-family: Arial, sans-serif;
+    height: 55px;
+  }
+  
+  .selected-temperaments {
+    display: flex;
+    align-items: center;
+    width: 800px;
+    background-color: rgb(56, 56, 56);
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 65px;
+    border: none;
+    min-height: 25px;
+  }
+  
+  /* .filter-label {
+    margin-right: 15px;
+    background-color: wheat;
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none
+  } */
+  
+  .temperaments-select {
+    max-height: 60px;
+    background-color: #525252;
+    color: aliceblue;
+    font-size: small;
+    min-width: 160px;
+    width: 160px;
+  }
+  
+  .selected-temperaments-label {
+    max-width: 150px;
+    font-weight: 700;
+    border: none;
+    color: white
+  }
+  
+  .and-label, .or-label {
+    color: white;
+    width: 50px;
+  }
+  
+  
+  
+  .temperaments-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9c9c9;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    max-width: 180px;
+    font-size: 0.8rem;
+    width: 180px;
+    height: 50px;
+  }
+
+  .temperaments-label-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: #c9c9c9;
+    padding: 5px 10px;
+    border-radius: 4px;
+    max-width: 180px;
+    height: 50px;
+  }
+
+  .filterMode {
+    background-color: #525252;
+    height: 50px;
+    padding: 5px 0;
+    border-radius: 4px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .clearButton {
+    margin-left: auto;
+    padding: 10px 30px;
+    background-color: wheat;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-weight: 800;
+    transition: all 0.25s ease-in-out;
+  }
+
+
+
+  .clearButton:hover {
+    background-color: rgb(245, 199, 114);
+    cursor: pointer;
+  }
+  
+.radioButtonModeSelector {
+    background-color: rgb(177, 177, 177);
+    padding: 30px 10px;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+.and-label, .or-label{
+    margin-inline: 15px;
+    font-weight: 700;
+    font-size: small;
+    min-height: 25px;
+}
+
+/* .radioButtonModeSelector label input[type="radio"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+} */
+
+.sourceSelector {
+    background-color: rgb(56, 56, 56);
+    color: white;
+    margin-left: 20px;
+    border-radius: 10px;
+    padding-left: 18px;
+    padding-right: 5px;
+    padding-block: 29px;
+    max-height: 25px;
+}
+
+#id-type-select {
+    border: none;
+    background-color: #ffffff;
+    padding: 4px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.createBreed-button {
+    margin-left: 20px;
+    padding: 10px 30px;
+    font-size: 25px;
+    border-radius: 8px;
+    background-color: rgb(209, 59, 59);
+    transition: all 0.25s ease-in-out;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+    font-weight: 700;
+}
+
+.createBreed-button:hover {
+    
+    background-color: rgb(192, 112, 66);
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.45);
+}
+
+
+
+  
+  #id-type-select {
+    min-width: 100px;
+    margin-right: 10px;
+  }
+
+
+  
+  
+
+  

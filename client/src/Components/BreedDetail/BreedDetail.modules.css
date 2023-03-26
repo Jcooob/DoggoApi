@@ -1,0 +1,92 @@
+.bodyDetail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 80px;
+    background-color: #f5f5f5;
+    padding-bottom: 50px;
+    background-image: url("../../Assets/BackgroundPaws.png");
+    background-size: 40%;
+    min-height: 80vh;
+}
+
+/* .landingText {
+  font-size: 40px;
+  font-weight: 600;
+  background-color: #ecbda2;
+  padding: 70px;
+  border-radius: 10px;
+} */
+  
+.breedName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ebc98c;
+    font-size: 35px;
+    background-color: #4e3921;
+    margin: auto;
+    padding-block: 20px;
+  }
+
+.imageBackground {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 50px;
+}
+  
+  .dogImg {
+    max-width: 800px;
+    max-height: 1500px;
+    min-width: 700px;
+    border-radius: 10px;
+    margin-block: 30px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+  }
+  
+  
+  .breedData .infoBreed {
+     color: #000000; 
+     font-size: 20px; 
+     margin-bottom: 2px; 
+     transition :color 0.15s ease-in-out;
+     font-weight: 500;
+  }
+
+  .descriptionBreed {
+    margin-top: 50px;
+    max-width: 780px;
+    background-color: #ebc98c;
+    padding: 30px;
+    border-radius: 5px;
+    font-size: 20px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  }
+
+  .infoMinor {
+    background-color: #dfd288;
+    max-width: 780px;
+    padding-inline: 65px;
+    padding-top: 20px;
+    padding-bottom: 35px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  }
+
+  .backButton {
+    position: absolute;
+    cursor: pointer;
+    margin-top: -10px;
+    padding: 7px 30px;
+    font-size: 25px;
+    border-radius: 8px;
+    background-color: rgb(112, 44, 42);
+    transition: all 0.20s ease-in-out;
+    border: none;
+  }
+
+  .backButton:Hover {
+    background-color: rgb(240, 46, 46);
+  }
+  

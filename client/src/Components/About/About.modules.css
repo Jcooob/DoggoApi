@@ -1,0 +1,45 @@
+
+.aboutBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: bisque;
+    padding-top: 100px;
+    font-size: 20px;
+    padding-bottom: 100px;
+}
+
+.whatsDoggoApi{
+    max-width: 1000px;
+}
+
+.howDoesItWork{
+    max-width: 1000px;
+    margin-top: 50px;
+}
+
+.technologiesUsed {
+    max-width: 1000px;
+    margin-top: 50px;
+}
+
+.technologiesIcons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px ;
+    margin-top: 100px;
+}
+
+.techUsedIcon {
+    max-height: 80px;
+}
+
+.techSection {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 700;
+}

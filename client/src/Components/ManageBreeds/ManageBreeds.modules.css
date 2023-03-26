@@ -1,0 +1,50 @@
+.manageBody {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 300px;
+    background-color: rgb(43, 41, 36);
+    height: 90vh;
+    background-image: url('../../Assets/BackgroundPaws.png');
+    background-size: 40%
+}
+
+.createBreed {
+    background-color: rgb(255, 255, 255);
+    margin-top: -50px;
+    padding-inline: 80px;
+    padding-block: 40px;
+    max-width: 250px;
+    border-radius: 15px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+}
+
+.deleteBreed {
+    background-color: rgb(255, 255, 255);
+    margin-top: -50px;
+    padding-inline: 80px;
+    padding-block: 40px;
+    max-width: 250px;
+    border-radius: 15px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+}
+
+.deleteIcon {
+    max-width: 200px;
+    margin-top: 25px;
+}
+
+.createIcon {
+    max-width: 200px;
+    margin-top: 25px;
+}
+
+.deleteBreed:hover {
+    transform: scale(1.05);
+}
+
+.createBreed:hover {
+    transform: scale(1.05);
+}

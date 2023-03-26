@@ -1,0 +1,66 @@
+.bodyLanding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    max-height: 200vh;
+    margin-bottom: auto;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    background-image: url('../../Assets/BackgroundPaws.png'); 
+    background-size: 40%;
+    font-family: Arial, sans-serif;
+    gap: 70px;
+}
+
+/* #887b50 */
+
+
+
+.landingText {
+    font-size: 40px;
+    font-weight: 600;
+    background-color: #ecbda2;
+    padding: 60px 80px;
+    border-radius: 10px;
+}
+
+.enter-button {
+    background-color: #F39C12;
+    color: rgb(0, 0, 0);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 2.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.enter-button:hover {
+    background-color: #E67E22;
+}
+
+.textArea {
+    display:  flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -80px;
+    margin-left: 150px;
+    row-gap: 130px;
+}
+
+.iconPaw {
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+
+.portraitLanding {
+    height: 800px;
+    margin-top: -90px;
+}
+
+
+

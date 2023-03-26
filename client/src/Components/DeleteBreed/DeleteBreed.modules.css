@@ -1,0 +1,110 @@
+.deleteBody {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 30px;
+    background-color: rgb(61, 61, 61);
+    background-image: url('../../Assets/BackgroundPaws.png');
+    background-size: 30%;
+}
+
+.deleteSelector {
+    position: block;
+    width: 600px;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-top: 100px;
+}
+
+.deleteBreedSelector {
+    font-size: 20px;
+}
+
+.deleteFormTitle {
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    margin-top: -80px;
+    margin-bottom: 10px;
+  }
+
+.deleteDogInfo {
+    background-color: bisque;
+    height: 1000px;
+    font-size: 15px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    padding-inline: 50px;
+    padding-bottom: 30px;
+    margin-bottom: 150px;
+}
+
+.deleteInfoSubTitle {
+    font-weight: 700;
+}
+
+.deleteInfo {
+    font-weight: 700;
+}
+
+.breedInfo {
+    float: right;
+  }
+
+.emptyDogSelected {
+    background-color: bisque;
+    height: 930px;
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    border-radius: 15px;
+    margin-bottom: 150px;
+}
+
+.deleteArea {
+    margin-top: 50px;
+}
+
+.deleteDogImg {
+    max-width: 500px;
+    max-height: 300px;
+    margin-inline: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 15px;
+}
+
+.deleteBreedButton {
+    min-width: 350px;
+    font-size: 25px;
+    margin-top: 30px;
+    margin-inline: auto;
+    padding-block: 15px;
+    margin-bottom: -90px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(190, 141, 96);
+    transition: all 0.3s ease-in-out;
+}
+
+.deleteBreedButton:hover {
+    cursor: pointer;
+    background-color: rgb(219, 91, 68);
+}
+
+.separatorDelete {
+    border: none;
+    border-top: 2px solid #afafaf;
+    margin: 20px -20px;
+  }
+
+/* transition: all 0.3s ease-in-out; */
+
+

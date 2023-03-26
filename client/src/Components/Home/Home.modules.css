@@ -1,0 +1,113 @@
+.bodyHome {
+    background-color: #ffffff ;
+    background-image: url('../../Assets/BackgroundPaws.png');
+    background-size: 35%;
+    font-family: Arial, sans-serif;
+    /* #d7bb87 */
+    /* #332212 */
+}
+
+.searchBar input {
+    border: none;
+    background-color: #ffffff; 
+    height: 40px; 
+    width: 500px; 
+    padding: 0 40px; 
+    font-size: 20px; 
+    border-radius: 10px; 
+    font-family: Arial, sans-serif;;
+  }
+
+  .searchBar {
+    background-color: #414141; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 85px; 
+  }
+
+  .sortBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #272727;
+    height: 70px;
+  }
+  
+  .sortButton {
+    background-color: rgb(204, 182, 142);
+    border: none;
+    color: #000000;
+    font-size: 13px;
+    padding: 10px 20px;
+    margin: 15px 0px;
+    cursor: pointer;
+    transition: all 0.18s ease-in-out;
+  }
+
+  .sortButton:hover{
+    background-color: #e2b07d;
+  }
+  
+  .sortButton:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .sortButton:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .sortButton.active {
+    background-color: #db913d;
+    color: rgb(0, 0, 0);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    padding-block: 30px;
+    
+  }
+  
+  .pagination button {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+
+  .pagination button:hover {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #d5a584;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    color: #fff;
+    background-color: #bd703d;
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:first-child:disabled,
+  .pagination button:last-child:disabled {
+    visibility: hidden;
+  }
+  
+  
