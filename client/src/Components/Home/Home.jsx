@@ -15,55 +15,73 @@ const Home = () => {
 
     const dispatch = useDispatch(); 
 
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filteredBreeds, setFilteredBreeds] = useState([]);
-    const [selectedTemperaments, setSelectedTemperaments] = useState([])
-    const [currentPage, setCurrentPage] = useState(1);
-    const [resultsPerPage, setResultsPerPage] = useState(8);
-    const [activeSort, setActiveSort] = useState("nameAsc");
-    const breeds = useSelector((state) => state.dogs);
-    const temperaments = useSelector((state) => state.selectedTemperaments)
-    const source = useSelector((state) => state.selectedIdType)
-    const mode = useSelector((state) => state.selectedMode)
+    const [searchTerm, setSearchTerm] = useState(""); // Término de busqueda
+    const [filteredBreeds, setFilteredBreeds] = useState([]); // Razas filtradas por temperamentos
+    const [selectedTemperaments, setSelectedTemperaments] = useState([]) // Temperamentos seleccionados
+    const [currentPage, setCurrentPage] = useState(1); // Selector de pagina
+    const [resultsPerPage, setResultsPerPage] = useState(8); // Elementos mostrados en pagina
+    const [activeSort, setActiveSort] = useState("nameAsc"); // Selector de ordenamiento
 
+    const breeds = useSelector((state) => state.dogs); // Se traen del estado global las razas de perros
+    const temperaments = useSelector((state) => state.selectedTemperaments) // Se traen del estado global los temperamentos seleccionados en el componente NavBar
+    const source = useSelector((state) => state.selectedIdType) // Selector del tipo de fuente (API, DB, ALL), se trae del estado global
+    const mode = useSelector((state) => state.selectedMode) // Selector de OR o AND, se trae del estado global
+    
+    //===================================== Paginador ========================================
+
+    // IndexOfLastResult: es el índice del último elemento de la página actual y se calcula multiplicando el número de 
+    // la página actual por el número de resultados por página.
     const indexOfLastResult = currentPage * resultsPerPage;
-    const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-    const currentResults = filteredBreeds.slice(indexOfFirstResult, indexOfLastResult);
-    const totalPages = Math.ceil(filteredBreeds.length / resultsPerPage);
 
+    // IndexOfFirstResult: es el índice del primer elemento de la página actual y se calcula restando el número de resultados 
+    // por página del índice del último resultado de la página actual.
+    const indexOfFirstResult = indexOfLastResult - resultsPerPage; 
+
+    // CurrentResults: es un arreglo que contiene los elementos de la página actual, que se obtiene al cortar el arreglo filteredBreeds desde 
+    // el índice del primer resultado hasta el índice del último resultado de la página actual.
+    const currentResults = filteredBreeds.slice(indexOfFirstResult, indexOfLastResult);
+
+    // TotalPages: es el número total de páginas que se necesitan para mostrar todos los elementos de filteredBreeds, que se obtiene dividiendo 
+    // la longitud del arreglo filteredBreeds por el número de resultados por página y redondeando hacia arriba con la función Math.ceil().
+    const totalPages = Math.ceil(filteredBreeds.length / resultsPerPage); 
+    
+    // Se aumenta de pagina
     const nextPage = () => {
-      if (currentPage < totalPages) {
+      if (currentPage < totalPages) { // Solo se aumenta si la pagina actual es menor a la cantidad total de paginas
         setCurrentPage(currentPage + 1);
       }
     };
-
+    
+    // Se retrocede de pagina
     const previousPage = () => {
-      if (currentPage > 1) {
+      if (currentPage > 1) { // Solo se retrocede siempre y cuando la pagina actual sea mayor que 1
         setCurrentPage(currentPage - 1);
       }
     };
+    
+    // Se setea la pagina en la que se haya hecho click
+    const handleClick = (pageNumber) => {
+        setCurrentPage(pageNumber); 
+      }
+    
+      
+      //===================================== UseEffects ========================================
 
+    // Se suben al array del estado global los perros recibidos con la funcion getAllDogs
     useEffect(() => {
         dispatch(getAllDogs());
     }, []);
     
+    // Este useEffect no tiene array de dependencias porque se tiene que ejecutar cada que se actualiza un temperamento en el estado global, 
+    // Si tuviera un array de dependencias solo se renderizaria una sola vez, y no cada que se actualizan los temperamentos seleccionados
     useEffect(() => {
         setSelectedTemperaments(temperaments)
     })
 
     useEffect(() => {
 
-      // Si no hay ningún temperamento seleccionado y la fuente es "all", se establece
-      // el orden activo en "nameAsc" y se filtran las razas según el término de búsqueda.
-
         if (selectedTemperaments.length === 0 && source === "all") {
           setActiveSort("nameAsc")
-
-          //Si no hay temperamentos seleccionados y la fuente es "all", el unico "filtro" activo es el de la search bar
-          //El metodo filter devuelve un nuevo array con los elementos que cumplan con determinada condicion
-          //Se evalua si el nombre de la raza convertido a minuscula incluye el termino introducido en la search bar convertido a minuscula
-          //Con el metodo includes, si esto se cumple devuelve true, sino false. De esta manera se eliminan los perros que no cumplan con dicha condicion.
-          //El método includes() devuelve true si la cadena de texto especificada está contenida en la cadena que se está evaluando, y false si no lo está.
           setFilteredBreeds(breeds.filter((breed) => breed.name.toLowerCase().includes(searchTerm.toLowerCase())));
 
         // Si hay temperamentos seleccionados, se filtran las razas según estos temperamentos.
@@ -71,50 +89,36 @@ const Home = () => {
 
         } else {
           const filteredBreedsByTemperament = breeds.filter((breed) => {
-
-            //Se separan los temperamentos de la raza (los cuales estan en una string separados por comas)
-
             const breedTemperaments = breed.temperament?.split(', ');
-
-            //Si el modo es "and" con el metodo every solo las razas que cumplan con todos los 
-            //temperamentos seleccionados (selectedTemperaments) retornaran true.
             if (mode === "and") {
+              // Retorna las razas que incluyan a todos los temperamentos seleccionados
               return selectedTemperaments.every((temperament) => breedTemperaments?.includes(temperament));
-
-            //Si el modo es "or" y NO hay temperamentos seleccionados todas las razas retornaran true.
             } else if (mode === "or" && selectedTemperaments.length === 0) {
               return true;
-              
-            //Si el modo es "or" y SI hay temperamentos seleccionados todas las razas que al menos cumplan
-            //con un temperamento seleccionado daran true.
             } else if (mode === "or" && selectedTemperaments.length > 0){
+              // Retorna las razas que incluyan al menos uno de los temperamentos seleccionados
               return selectedTemperaments.some((temperament) => breedTemperaments?.includes(temperament));
             }
-            //Si no todo retornara true.
             return true;
           });
 
-          //Ahora se procede a filtrar por la fuente de la raza
+          // Una vez filtradas las razas por temperamentos se procede a filtrar por la fuente de la raza
           const filteredBreedsByIdType = filteredBreedsByTemperament.filter((breed) => {
             const breedId = breed.id;
 
-            //Por cada raza filtrada por temperamento se realiza este proceso, solo retornan true las razas cuyo tipo de id
-            //sea el seleccionado por el usuario. Las razas que retornan false (que no superan los filtros) no se muestran.
-
-            //Si el source selector es de tipo number; se mostraran las razas de la API
+            //Si el source selector es de tipo number; se mostraran las razas de la API (Tipo de ID: number)
             if (source === "number") {
               setActiveSort("nameAsc")
               setCurrentPage(1)
               return typeof breedId === "number";
 
-            //Si el source selector es de tipo string; se mostraran las razas de la DB
+            //Si el source selector es de tipo string; se mostraran las razas de la DB (Tipo de ID: string)
             } else if (source === "string") {
               setActiveSort("nameAsc")
               setCurrentPage(1)
               return typeof breedId === "string";
             } else {
             
-            //Si el source selector es ALL se mostraran todas las razas ya que todas retornaran true
               setActiveSort("nameAsc")
               setCurrentPage(1)
               return true;
@@ -123,7 +127,7 @@ const Home = () => {
           setActiveSort("nameAsc")
           setCurrentPage(1)
 
-          //Por ultimo se setean como razas filtradas las razas que cumplan con el contenido de la searchBar, que funciona igual que los filtros anteriores
+          //Por ultimo se establecen como razas filtradas las razas que retornan true luego de haber pasado por todo el sistema de filtrado
           setFilteredBreeds(filteredBreedsByIdType.filter((breed) => breed.name.toLowerCase().includes(searchTerm.toLowerCase())));
         }
     }, [selectedTemperaments, source, searchTerm, breeds, mode]);
@@ -190,11 +194,6 @@ const Home = () => {
     };
 
     //===================================================== Finalizacion ordenamientos ==========================================================
-    
-
-    const handleClick = (pageNumber) => {
-        setCurrentPage(pageNumber);
-      }
 
     if (breeds.length === 0) {
         return <LoadingScreen />;
