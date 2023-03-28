@@ -1,20 +1,27 @@
 
 
-function getAverageWeightInMetric(weight) {
-    if (typeof weight === "object" && weight.metric) {
-      const weightArray = weight.metric.split(" - ");
-      if (weightArray.length > 1) {
-        const weightInKgArray = weightArray.map((w) => parseFloat(w) * 0.453592);
-        const averageWeightInKg = (weightInKgArray[0] + weightInKgArray[1]) / 2;
+function getAverageWeight(weight) {
+  if (typeof weight === "object" && weight.metric) {
+    if (weight.metric === "NaN") {
+      return 20;
+    } else if (weight.metric === "NaN - 8") {
+      return 8;
+    } else {
+      const weightArray = weight.metric.split(" - ") || weight.metric.split(" – ");
+      if (weightArray.length > 1) { 
+        const averageWeightInKg = (parseFloat(weightArray[0]) + parseFloat(weightArray[1])) / 2;
         return Math.round(averageWeightInKg * 10) / 10;
       } else {
-        const weightInKg = parseFloat(weight.metric) * 0.453592;
+        const weightInKg = parseFloat(weight.metric);
         return Math.round(weightInKg * 10) / 10;
       }
-    } else {
-      return weight;
     }
+  } else {
+    return weight;
   }
+}
+
+
 
 function getAverageLifeSpan(lifespan) {
     if (!lifespan) {
@@ -30,4 +37,4 @@ function getAverageLifeSpan(lifespan) {
     }
   }
 
-  module.exports = {getAverageLifeSpan, getAverageWeightInMetric}
+  module.exports = {getAverageLifeSpan, getAverageWeight}

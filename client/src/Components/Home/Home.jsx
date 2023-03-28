@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllDogs } from "../../Redux/actions";
-import { getAverageLifeSpan, getAverageWeightInMetric } from "../../Utils/GetAverageFunctions"
+import { getAverageLifeSpan, getAverageWeight } from "../../Utils/GetAverageFunctions"
 import LoadingScreen from "../LoadingScreen/LoadingScreen"
 import NavBar from "../NavBar/NavBar";
 import Breeds from "../Breeds/Breeds";
@@ -15,15 +15,12 @@ const Home = () => {
 
     const dispatch = useDispatch(); 
 
-    //Se crean estados locales para 
-
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredBreeds, setFilteredBreeds] = useState([]);
     const [selectedTemperaments, setSelectedTemperaments] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [resultsPerPage, setResultsPerPage] = useState(8);
     const [activeSort, setActiveSort] = useState("nameAsc");
-
     const breeds = useSelector((state) => state.dogs);
     const temperaments = useSelector((state) => state.selectedTemperaments)
     const source = useSelector((state) => state.selectedIdType)
@@ -49,11 +46,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(getAllDogs());
     }, []);
-
-    // useEffect(() => {
-    //     setFilteredBreeds(breeds.filter((breed) => breed.name.toLowerCase().includes(searchTerm.toLowerCase())));
-    // }, [searchTerm, breeds]);
-
+    
     useEffect(() => {
         setSelectedTemperaments(temperaments)
     })
@@ -138,7 +131,15 @@ const Home = () => {
 
     //================================================= Seccion Ordenamientos de razas =======================================================================
 
-        //En esta seccion se muestran los handlers para los ordenamientos de las razas
+        // En esta seccion se muestran los handlers para los ordenamientos de las razas
+
+        // Localcompare indica si una string es menor o mayor que otra segun su orden lexicografico
+
+        // [...filteredBreeds] es una copia superficial (shallow copy) de filteredBreeds.
+        // La razón por la que se utiliza una copia superficial en este caso es porque la función sort() es un método destructivo, 
+        // lo que significa que modifica directamente el array sobre el que se llama en lugar de crear un nuevo array ordenado. 
+        // Al hacer una copia superficial antes de ordenar, se evita modificar directamente el array original y se garantiza que los 
+        // cambios se realicen en el nuevo array sortedBreeds.
 
     const sortDogsByNameAsc = () => {
       const sortedBreeds = [...filteredBreeds].sort((a, b) => a.name.localeCompare(b.name));
@@ -153,16 +154,16 @@ const Home = () => {
     };
     
     const sortDogsByWeightAsc = () => {
-      const sortedBreeds = [...filteredBreeds].sort((a, b) => {
-        return getAverageWeightInMetric(a.weight) - getAverageWeightInMetric(b.weight);
+      const sortedBreeds = filteredBreeds.sort((a, b) => {
+        return getAverageWeight(a.weight) - getAverageWeight(b.weight);
       });
       setFilteredBreeds(sortedBreeds);
       setActiveSort("weightAsc");
     };
 
     const sortDogsByWeightDesc = () => {
-      const sortedBreeds = [...filteredBreeds].sort((a, b) => {
-        return getAverageWeightInMetric(b.weight) - getAverageWeightInMetric(a.weight);
+      const sortedBreeds = filteredBreeds.sort((a, b) => {
+        return getAverageWeight(b.weight) - getAverageWeight(a.weight);
       });
       setFilteredBreeds(sortedBreeds);
       setActiveSort("weightDesc");
@@ -254,6 +255,8 @@ const Home = () => {
                 </div>
 
                 <Breeds breeds={currentResults}/>
+
+
                 
                 <div className="pagination">
 

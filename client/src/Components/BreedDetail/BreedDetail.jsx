@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDogDetails, cleanDogDetails } from "../../Redux/actions"; 
-import { getAverageLifeSpan } from "../../Utils/GetAverageFunctions"
+import { getAverageWeight } from "../../Utils/GetAverageFunctions"
 import React from "react";
 import LoadingScreen from "../LoadingScreen/LoadingScreen"
 import TitleBar from "../TitleBar/TitleBar"
@@ -14,8 +14,6 @@ const BreedDetail = () => {
     const dispatch = useDispatch();
     const breed = useSelector(state => state.dogDetails)
 
-    
-
     React.useEffect(() => {
         dispatch(getDogDetails(id));
         return () => dispatch(cleanDogDetails());
@@ -25,7 +23,7 @@ const BreedDetail = () => {
         return (
             <LoadingScreen />
         )
-    }
+    } else {
 
     return (
         <>
@@ -84,7 +82,7 @@ const BreedDetail = () => {
             <Footer />
         </>
     )
-
+                    }
 }
 
 export default BreedDetail;

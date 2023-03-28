@@ -6,7 +6,9 @@ const getDBBreeds = async () => {
             {include: {model: Temperaments, through: {attributes: []}}}
         );
 
-        return dogsDB;
+        const dogsDBOrdered = dogsDB.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1);
+
+        return dogsDBOrdered;
 }
 
 module.exports = {getDBBreeds}

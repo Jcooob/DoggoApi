@@ -23,6 +23,9 @@ export default function Form() {
     const [status, setStatus] = useState("")
 
     const temperaments = useSelector((state) => state.temperaments)
+
+    // Esta funcion sirve para encontrar los temperamentos seleccionados por el usuario en el array de todos los temperamentos
+    // extraidos del estado global
     const updateSelectedTemperamentIds = () => {
       const selectedIds = selectedTemperaments.map((temperament) => {
         const matchingTemperament = temperaments.find((t) => t.temperament === temperament);
@@ -81,21 +84,36 @@ export default function Form() {
         return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(url);
     }
 
-
+    // Se utiliza useCallback para evitar que la función se cree de nuevo en cada renderizado, 
+    // lo que puede tener un impacto en el rendimiento.
     const handleSelectTemperament = useCallback((e) => {
+
+      // Selected contiene los valores de los elementos seleccionados en el elemento <select>
       const selected = Array.from(e.target.selectedOptions, (option) => option.value);
+
+      // SelectedID contiene las claves de esos elementos seleccionados.
       const selectedID = Array.from(e.target.selectedOptions, (option) => option.key);
-    
-      setSelectedTemperamentIds(selectedID); // añadir los IDs al estado
+
+      // Se actualiza el estado de la aplicación con las claves de los elementos seleccionados.
+      setSelectedTemperamentIds(selectedID);
     
       setSelectedTemperaments((prevSelectedTemperaments) => {
+
+        //Si no hay temperamentos seleccionados retorna un array vacio
         if (selected.length === 0) {
           return [];
+
+        // Se comprueba si el primer elemento seleccionado ya está en la lista de elementos seleccionados. 
+        // Si ese es el caso, el elemento se elimina de la lista. 
         } else if (prevSelectedTemperaments.includes(selected[0])) {
           return prevSelectedTemperaments.filter((temperament) => temperament !== selected[0]);
+
+        // Si los temperamentos seleccionados son 10 retorna los temperamentos ya seleccionados
         } else if (prevSelectedTemperaments.length >= 10) {
           return prevSelectedTemperaments;
         } else {
+        
+        // Si se selecciona un temperamento y este no esta en el array de selectedTemperaments, se añade cnop un push
           const newSelectedTemperaments = [...prevSelectedTemperaments];
           selected.forEach((temperament) => {
             if (!newSelectedTemperaments.includes(temperament)) {

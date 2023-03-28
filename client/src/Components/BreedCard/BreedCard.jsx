@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getAverageWeight, getAverageLifeSpan } from "../../Utils/GetAverageFunctions";
 import "./BreedCard.modules.css"
 
 const BreedCard = ({id, name, img, temperament, weight, life_span}) => {
@@ -24,8 +25,8 @@ const BreedCard = ({id, name, img, temperament, weight, life_span}) => {
                 <img src = {img} alt = {name} className = "breedPicture"/>
                 <div className="data">
                     <p> {temperamentText}</p>
-                    <p> Average life span: {life_span}</p>
-                    <p> Weight: {weight.metric} kg</p>
+                    <p> Average life span: {getAverageLifeSpan(life_span)}</p>
+                    <p> Weight: {getAverageWeight(weight)} kg</p>
                 </div>
             </div>
         </Link>

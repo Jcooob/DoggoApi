@@ -14,6 +14,8 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+//------------------------------------getDogs--------------------------------------------
+
 router.get("/dogs", async (req, res) => {
     const {name} = req.query
     try {
@@ -24,6 +26,8 @@ router.get("/dogs", async (req, res) => {
     }
 })
 
+//-----------------------------------getDogsDB-------------------------------------------
+
 router.get("/dogsDB", async (req, res) => {
     try {
         const dogsDB = await getDBBreeds()
@@ -32,6 +36,8 @@ router.get("/dogsDB", async (req, res) => {
         res.status(400).json({error: error.message})
     }
 })
+
+//-----------------------------------getDogsId-------------------------------------------
 
 router.get("/dogs/:breedId", async (req, res) => {
 
@@ -45,6 +51,8 @@ router.get("/dogs/:breedId", async (req, res) => {
     }
 })
 
+//-----------------------------------getTemperaments-------------------------------------------
+
 router.get("/temperaments", async (req, res) => {
     try {
         const temperaments = await getTemperaments();
@@ -53,6 +61,8 @@ router.get("/temperaments", async (req, res) => {
         res.status(400).json({error: error.message})
     }
 })
+
+//-----------------------------------postDogs-------------------------------------------
 
 router.post("/dogs", async (req, res) => {
     const {name, metricHeight, metricWeight, life_span, temperament, img} = req.body;
@@ -63,6 +73,8 @@ router.post("/dogs", async (req, res) => {
         res.status(404).json({error: error.message})
     }
 })
+
+//-----------------------------------deleteDogs-------------------------------------------
 
 router.delete("/deleteDogs/:id", async (req, res) => {
     const { id } = req.params;
