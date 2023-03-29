@@ -82,6 +82,7 @@ const Home = () => {
 
         if (selectedTemperaments.length === 0 && source === "all") {
           setActiveSort("nameAsc")
+          setCurrentPage(1)
           setFilteredBreeds(breeds.filter((breed) => breed.name.toLowerCase().includes(searchTerm.toLowerCase())));
 
         // Si hay temperamentos seleccionados, se filtran las razas según estos temperamentos.
