@@ -2,6 +2,7 @@ import { getTemperaments } from "../../Redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useCallback } from "react";
 import { postBreed } from "../../Redux/actions";
+import axios from "axios";
 import TitleBar from "../TitleBar/TitleBar"
 import Footer from "../Footer/Footer";
 import "./Form.modules.css"
@@ -211,14 +212,21 @@ export default function Form() {
         if (validate()) {
           postBreed(breed)
             .then((response) => {
-              if (response.message === "Request failed with status code 404") {
-                setStatus("Something went wrong")
+              if (response instanceof axios.AxiosError) {
+                if (response.code === "ERR_NETWORK") {
+                  setStatus("Servers are not available, try again later")
+                }
+                if (response.response.data.error === "llave duplicada viola restricción de unicidad «Dogs_name_key»") {
+                  setStatus(`There is already a breed called "${breed.name}" in the DB`)
+                }
               } else {
-                setStatus("Breed created successfully!")
-                clearForm();
-                setTimeout(() => {
-                  setStatus("")
-                }, 7000);
+                if (response.statusText === "OK" && response.status === 200) {
+                  setStatus("Breed created successfully!")
+                  clearForm();
+                  setTimeout(() => {
+                    setStatus("")
+                  }, 7000);
+                }
               }
             })
         } 
