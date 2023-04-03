@@ -21,7 +21,7 @@ export default function NavBar() {
     }, []);
 
     useEffect(() => {
-      setFilterLabel(" " + selectedTemperaments.filter(Boolean).join(", "));
+      setFilterLabel(" " + selectedTemperaments.join(", "));
     }, [selectedTemperaments]);
 
     //---------------------------------------------------------------
