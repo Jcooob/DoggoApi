@@ -264,6 +264,10 @@ const Home = () => {
                         Prev
                     </button>
 
+                    {/* Se crea un array de la totalidad de las paginas, y con el metodo map se crea un boton por cada elemento en dicho array. */}
+                    {/* (_, i) se utiliza para ignorar el primer argimento (por convencion) y utilizar solo el segundi (i), el cual se utiliza para generar
+                    numeros de pagina consecutivos comenzando desde la pagina 1 */}
+
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                         <button key={page} onClick={() => handleClick(page)} className={page === currentPage ? "active" : ""}>
                             {page}

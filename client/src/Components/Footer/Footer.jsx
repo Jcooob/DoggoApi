@@ -1,9 +1,9 @@
 import "./Footer.modules.css"
-import facebook from "../../Assets/facebook.png"
-import twitter from "../../Assets/twitter.png"
-import instagram from "../../Assets/instagram.png"
-import github from "../../Assets/github.png"
-import linkedin from "../../Assets/linkedin.png"
+import facebook from "../../Assets/SocialMediaIcons/facebook.png"
+import twitter from "../../Assets/SocialMediaIcons/twitter.png"
+import instagram from "../../Assets/SocialMediaIcons/instagram.png"
+import github from "../../Assets/SocialMediaIcons/github.png"
+import linkedin from "../../Assets/SocialMediaIcons/linkedin.png"
 
 
 const Footer = () => {

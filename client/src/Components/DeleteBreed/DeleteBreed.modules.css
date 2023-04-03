@@ -4,12 +4,14 @@
     flex-direction: column;
     justify-content: center;
     font-size: 30px;
-    background-color: rgb(61, 61, 61);
+    background-color: #f5f5f5;
     background-image: url('../../Assets/BackgroundPaws.png');
     background-size: 30%;
 }
 
 .deleteSelector {
+    border: 4px solid #000000;
+    background-color: rgb(255, 255, 255);
     position: block;
     width: 600px;
     padding: 15px;
@@ -26,40 +28,29 @@
     display: flex;
     justify-content: center;
     font-size: 32px;
-    margin-top: -80px;
+    margin-top: -140px;
     margin-bottom: 10px;
   }
 
-.deleteDogInfo {
-    background-color: bisque;
-    height: 1000px;
-    font-size: 15px;
-    width: 900px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 15px;
-    padding-inline: 50px;
-    padding-bottom: 30px;
-    margin-bottom: 150px;
-}
-
-.deleteInfoSubTitle {
-    font-weight: 700;
-}
-
-.deleteInfo {
-    font-weight: 700;
+  
+  .deleteInfoSubTitle {
+      font-weight: 700;
+    }
+    
+    .deleteInfo {
+        font-weight: 700;
+    padding-inline: 20px;
 }
 
 .breedInfo {
     float: right;
-  }
+}
 
 .emptyDogSelected {
+    border: .5px solid #000000;
     background-color: bisque;
-    height: 930px;
-    width: 900px;
+    height: 890px;
+    width: 840px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,6 +60,20 @@
     font-size: 20px;
 }
 
+.deleteDogInfo {
+    border: .5px solid #000000;
+    background-color: bisque;
+    height: 950px;
+    font-size: 15px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 150px;
+}
+
 .deleteArea {
     margin-top: 50px;
 }
@@ -76,6 +81,8 @@
 .deleteDogImg {
     max-width: 500px;
     max-height: 300px;
+    min-width: 500px;
+    min-height: 290px;
     margin-inline: auto;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -83,16 +90,18 @@
 }
 
 .deleteBreedButton {
-    min-width: 350px;
-    font-size: 25px;
+    margin-bottom: -140px;
+    cursor: pointer;
+    font-size: larger;
+    font-weight: 600;
+    padding: 20px;
+    background-color: rgb(220, 174, 131);
+    border-radius: 10px;
+    padding-inline: 50px;
     margin-top: 30px;
     margin-inline: auto;
-    padding-block: 15px;
-    margin-bottom: -90px;
     border: none;
-    border-radius: 15px;
-    background-color: rgb(190, 141, 96);
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .deleteBreedButton:hover {

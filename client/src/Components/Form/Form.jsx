@@ -22,17 +22,19 @@ export default function Form() {
     const [selectedTemperamentsIds, setSelectedTemperamentIds] = useState([])
     const [imageURL, setImageURL] = useState("");
     const [status, setStatus] = useState("")
+    const [statusColor, setStatusColor] = useState("")
 
     const temperaments = useSelector((state) => state.temperaments)
 
-    // Esta funcion sirve para encontrar los temperamentos seleccionados por el usuario en el array de todos los temperamentos
-    // extraidos del estado global
+    // Con esta funcion se utilizan los temperamentos que han sido seleccionados en el selector del formulario, para luego 
+    // filtrarlos desde el array de temperamentos original, para asi obtener su id y almacenarlos
+    // en el estado selectedTemperamentsIds y finalmente pasarselos como un array al objeto Breed que ira en el metodo Post()
     const updateSelectedTemperamentIds = () => {
-      const selectedIds = selectedTemperaments.map((temperament) => {
+      //selectedTemperaments es un array con las strings de los temperamentos seleccionados
+     const selectedIds = selectedTemperaments.map((temperament) => {
         const matchingTemperament = temperaments.find((t) => t.temperament === temperament);
         return matchingTemperament ? matchingTemperament.id : null;
       });
-    
       setSelectedTemperamentIds(selectedIds.filter((id) => id !== null));
     };
 
@@ -43,6 +45,8 @@ export default function Form() {
     useEffect(() => {
         dispatch(getTemperaments());
     }, []);
+
+    //-------Manejadores de estados de las caracteristicas de la raza-------
 
     const nameHandler = (event) => {
         setName(event.target.value)
@@ -81,41 +85,35 @@ export default function Form() {
         setSelectedTemperaments([])
     }
 
-    function isValidImageURL(url) {
-        return /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(url);
-    }
-
-    // Se utiliza useCallback para evitar que la función se cree de nuevo en cada renderizado, 
-    // lo que puede tener un impacto en el rendimiento.
+    //---------------------------------------------------------------
+    
     const handleSelectTemperament = useCallback((e) => {
-
-      // Selected contiene los valores de los elementos seleccionados en el elemento <select>
+      
+      // Se crea un array con un solo elemento, el cual es la opcion seleccionada en el selector
       const selected = Array.from(e.target.selectedOptions, (option) => option.value);
 
-      // SelectedID contiene las claves de esos elementos seleccionados.
-      const selectedID = Array.from(e.target.selectedOptions, (option) => option.key);
-
-      // Se actualiza el estado de la aplicación con las claves de los elementos seleccionados.
-      setSelectedTemperamentIds(selectedID);
-    
+      //prevSelectedTemperaments es el estado previo de la lista de temperamentos seleccionados, antes que se produzca el onChange 
       setSelectedTemperaments((prevSelectedTemperaments) => {
-
+        
         //Si no hay temperamentos seleccionados retorna un array vacio
         if (selected.length === 0) {
           return [];
-
+          
         // Se comprueba si el primer elemento seleccionado ya está en la lista de elementos seleccionados. 
         // Si ese es el caso, el elemento se elimina de la lista. 
         } else if (prevSelectedTemperaments.includes(selected[0])) {
           return prevSelectedTemperaments.filter((temperament) => temperament !== selected[0]);
-
-        // Si los temperamentos seleccionados son 10 retorna los temperamentos ya seleccionados
+          
+          // Si los temperamentos seleccionados son 10 retorna los temperamentos ya seleccionados
         } else if (prevSelectedTemperaments.length >= 10) {
           return prevSelectedTemperaments;
+
+        // Si se selecciona un temperamento y este no esta en el array de selectedTemperaments, se añade con un push
         } else {
-        
-        // Si se selecciona un temperamento y este no esta en el array de selectedTemperaments, se añade cnop un push
           const newSelectedTemperaments = [...prevSelectedTemperaments];
+
+        // Con un forEach se evalua si el temperamento seleccionado ya se encuentra en el array de seleccionado
+        // Si esto es asi se añade dentro del array de temperamentos seleccionados y esto es lo que se retorna
           selected.forEach((temperament) => {
             if (!newSelectedTemperaments.includes(temperament)) {
               newSelectedTemperaments.push(temperament);
@@ -126,12 +124,18 @@ export default function Form() {
       });
     }, []);
     
+    //----------------------------FormValidation------------------------------------
+    
+    function isValidImageURL(url) {
+      return /^https?:\/\/.+\.((jpe?g|png|webp|avif|gif|svg)$|jpe?g)$/i.test(url);
+    }    
 
-      function validate() {
-        if (name === "" || !/^[a-zA-Z]+$/.test(name)) {
-          alert("Please enter a valid name using only letters.");
-          return false;
-        }
+    function validate() {
+      if (name === "" || !/^[a-zA-Z]+$/.test(name)) {
+        setStatusColor("red")
+        setStatus("Please enter a valid name using only letters.");
+        return false;
+      }
       
         if (
           minWeight === "" ||
@@ -140,11 +144,13 @@ export default function Form() {
           isNaN(maxWeight) ||
           parseFloat(minWeight) < 0 ||
           parseFloat(maxWeight) < 0 ||
-          parseFloat(minWeight) >= parseFloat(maxWeight)
-        ) {
-          alert("Please enter valid weight values.");
-          return false;
-        }
+          parseFloat(minWeight) >= parseFloat(maxWeight) ||
+          parseFloat(maxWeight) > 90
+          ) {
+            setStatusColor("red")
+            setStatus("Please enter valid weight values.");
+            return false;
+          }
       
         if (
           minHeight === "" ||
@@ -153,9 +159,11 @@ export default function Form() {
           isNaN(maxHeight) ||
           parseFloat(minHeight) < 0 ||
           parseFloat(maxHeight) < 0 ||
-          parseFloat(minHeight) >= parseFloat(maxHeight)
+          parseFloat(minHeight) >= parseFloat(maxHeight) ||
+          parseFloat(maxHeight) > 80
         ) {
-          alert("Please enter valid height values.");
+          setStatusColor("red")
+          setStatus("Please enter valid height values.");
           return false;
         }
       
@@ -166,24 +174,30 @@ export default function Form() {
           isNaN(maxLifeSpan) ||
           parseInt(minLifeSpan) < 0 ||
           parseInt(maxLifeSpan) < 0 ||
-          parseInt(minLifeSpan) >= parseInt(maxLifeSpan)
+          parseInt(minLifeSpan) >= parseInt(maxLifeSpan) ||
+          parseFloat(maxLifeSpan) > 20
         ) {
-          alert("Please enter valid lifespan values.");
+          setStatusColor("red")
+          setStatus("Please enter valid lifespan values.");
           return false;
         }
       
         if (selectedTemperaments.length === 0) {
-          alert("Please select at least one temperament.");
+          setStatusColor("red")
+          setStatus("Please select at least one temperament.");
           return false;
         }
       
         if (imageURL === "" || !isValidImageURL(imageURL)) {
-          alert("Please enter a valid image URL.");
+          setStatusColor("red")
+          setStatus("Please enter a valid image URL.");
           return false;
         }
       
         return true;
       }
+
+      //----------------------------------------------------------------
 
       const breed = {
         name: name,
@@ -214,13 +228,16 @@ export default function Form() {
             .then((response) => {
               if (response instanceof axios.AxiosError) {
                 if (response.code === "ERR_NETWORK") {
+                  setStatusColor("red")
                   setStatus("Servers are not available, try again later")
                 }
                 if (response.response.data.error === "llave duplicada viola restricción de unicidad «Dogs_name_key»") {
+                  setStatusColor("red")
                   setStatus(`There is already a breed called "${breed.name}" in the DB`)
                 }
               } else {
                 if (response.statusText === "OK" && response.status === 200) {
+                  setStatusColor("green")
                   setStatus("Breed created successfully!")
                   clearForm();
                   setTimeout(() => {
@@ -236,7 +253,6 @@ export default function Form() {
     return (
       <>
         <TitleBar type={"createBreed"} text={"Create your own breed!"}  />
-
 
         <div className="backgroundForm">
 
@@ -282,20 +298,24 @@ export default function Form() {
                 </select>
 
                 <label className="tempSelect">Selected Temperaments (Max. 10):</label>
+
                 {selectedTemperaments.length > 0 ? (
                     <p>{selectedTemperaments.join(", ")}</p>
                 ) : (
                     <p>No temperaments selected</p>
                 )}
+
                 <button onClick={handleClearTemperaments} className="clearTemperamentsButton">Clear</button>
             </div>
 
             <hr className="formSeparator"/>
       
             <div className="imageSection">
+
                 <label className="formLabel">Your breed url's image: </label>
 
                 <input type="text" value={imageURL} className="formInput" onChange={handleInputChange} placeholder="http//yourDogImage.jpg"/>
+
                 <div>
                     {imageURL ? (
                         isValidImageURL(imageURL) ? (
@@ -313,7 +333,7 @@ export default function Form() {
 
               <button type="submit" className="submitButton">Submit</button>
               
-              <span className="statusMessage">
+              <span className={statusColor}>
                 {status}
               </span>
 

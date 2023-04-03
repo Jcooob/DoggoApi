@@ -24,17 +24,35 @@ export default function NavBar() {
       setFilterLabel(" " + selectedTemperaments.filter(Boolean).join(", "));
     }, [selectedTemperaments]);
 
+    //---------------------------------------------------------------
+
     const handleSelectTemperament = useCallback((e) => {
+      
+      // Se crea un array con un solo elemento, el cual es la opcion seleccionada en el selector
       const selected = Array.from(e.target.selectedOptions, (option) => option.value);
+      
+      //prevSelectedTemperaments es el estado previo de la lista de temperamentos seleccionados, antes que se produzca el onChange
       setSelectedTemperaments((prevSelectedTemperaments) => {
+        
+        // Si no hay temperamento seleccionado retorna un array vacio
         if (selected.length === 0) {
           return [];
+        
+        // Se comprueba si el primer elemento seleccionado ya está en la lista de elementos seleccionados. 
+        // Si ese es el caso, el elemento se elimina de la lista.
         } else if (prevSelectedTemperaments.includes(selected[0])) {
           return prevSelectedTemperaments.filter((temperament) => temperament !== selected[0]);
+
+        // Si los temperamentos seleccionados son 5 retorna los temperamentos ya seleccionados
         } else if (prevSelectedTemperaments.length >= 5) {
           return prevSelectedTemperaments;
+
+        // Finalmente se crea una copia superficial de los temperamentos previamente seleccionados  
         } else {
           const newSelectedTemperaments = [...prevSelectedTemperaments];
+
+        // Con un forEach se evalua si el temperamento seleccionado ya se encuentra en el array de seleccionado
+        // Si esto es asi se añade dentro del array de temperamentos seleccionados y esto es lo que se retorna
           selected.forEach((temperament) => {
             if (!newSelectedTemperaments.includes(temperament)) {
               newSelectedTemperaments.push(temperament);
@@ -57,10 +75,13 @@ export default function NavBar() {
       setFilterMode(e.target.value)
     }, []);
 
+    // Este useEffect se encarga de despachar hacia el estado global los filtros seleccionados en este componente (NavBar)
     useEffect(() => {
         dispatch(updateSelectedTemperaments(selectedTemperaments));
         dispatch(updateSelectedIdType(selectedIdType));
         dispatch(updateSelectedMode(filterMode));
+    
+    // Mira a todos los filtros, si estos cambian se ejecutara este useEffect
     }, [selectedTemperaments, selectedIdType, filterMode, dispatch]);
 
     return (
@@ -69,7 +90,7 @@ export default function NavBar() {
         <div className="NavBar"> 
 
             <Link to = {`/`}>
-              <img src={logo} alt="Doggo Api Logo" className="logo" />
+              <img src={logo} alt="Doggo Api Logo" className="logoNavBar" />
             </Link>
             
             <div className="selected-temperaments">

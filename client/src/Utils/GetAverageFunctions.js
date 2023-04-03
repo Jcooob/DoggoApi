@@ -1,9 +1,8 @@
 
-
 function getAverageWeight(weight) {
   if (typeof weight === "object" && weight.metric) {
     if (weight.metric === "NaN") {
-      return 20;
+      return 25;
     } else if (weight.metric === "NaN - 8") {
       return 8;
     } else {
@@ -20,8 +19,6 @@ function getAverageWeight(weight) {
     return weight;
   }
 }
-
-
 
 function getAverageLifeSpan(lifespan) {
     if (!lifespan) {

@@ -4,7 +4,7 @@ import "./Breeds.modules.css";
 const Breeds = ({ breeds }) => {
   return (
     <>
-      {breeds ? (
+      {breeds.length > 0 ? (
         <div className="cardsBox">
           {breeds.map((breed) => (
             <BreedCard
@@ -19,7 +19,9 @@ const Breeds = ({ breeds }) => {
           ))}
         </div>
       ) : (
-        <p>No breeds found</p>
+        <div className="cardsBoxEmpty">
+          <p>No breeds found </p>
+        </div>
       )}
     </>
   );

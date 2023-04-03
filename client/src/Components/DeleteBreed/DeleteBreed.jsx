@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import "./DeleteBreed.modules.css"
 
 export default function DeleteBreed() {
+
   const dispatch = useDispatch();
 
   const breeds = useSelector((state) => state.dbBreeds);
@@ -25,11 +26,11 @@ export default function DeleteBreed() {
       setSelectedBreed(null);
       window.location.reload();
     }
-  };  
+  };
 
   useEffect(() => {
     dispatch(getDBBreeds());
-  }, [dispatch]);
+  }, []);
 
   return (
     <>

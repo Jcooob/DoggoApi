@@ -6,17 +6,9 @@
     background-color: #f5f5f5;
     padding-bottom: 50px;
     background-image: url("../../Assets/BackgroundPaws.png");
-    background-size: 40%;
+    background-size: 30%;
     min-height: 80vh;
 }
-
-/* .landingText {
-  font-size: 40px;
-  font-weight: 600;
-  background-color: #ecbda2;
-  padding: 70px;
-  border-radius: 10px;
-} */
   
 .breedName {
     display: flex;

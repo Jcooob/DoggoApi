@@ -15,19 +15,10 @@
     background-color: rgb(56, 56, 56);
     padding: 10px;
     border-radius: 5px;
-    margin-left: 65px;
     border: none;
     min-height: 25px;
   }
-  
-  /* .filter-label {
-    margin-right: 15px;
-    background-color: wheat;
-    padding: 10px;
-    font-weight: 600;
-    border-radius: 5px;
-    border: none
-  } */
+
   
   .temperaments-select {
     max-height: 60px;
@@ -66,7 +57,7 @@
     width: 180px;
     height: 50px;
   }
-
+  
   .temperaments-label-empty {
     display: flex;
     align-items: center;
@@ -93,6 +84,7 @@
     text-align: center;
   }
   
+  
   .clearButton {
     margin-left: auto;
     padding: 10px 30px;
@@ -102,45 +94,38 @@
     font-weight: 800;
     transition: all 0.25s ease-in-out;
   }
-
-
-
+  
   .clearButton:hover {
     background-color: rgb(245, 199, 114);
     cursor: pointer;
   }
   
-.radioButtonModeSelector {
+  .radioButtonModeSelector {
     background-color: rgb(177, 177, 177);
     padding: 30px 10px;
     margin-left: 20px;
     border-radius: 10px;
-}
-
-.and-label, .or-label{
+  }
+  
+  .and-label, .or-label{
     margin-inline: 15px;
     font-weight: 700;
     font-size: small;
     min-height: 25px;
-}
-
-/* .radioButtonModeSelector label input[type="radio"] {
-  transform: scale(1.2);
-  margin-right: 5px;
-} */
-
-.sourceSelector {
+  }
+  
+  .sourceSelector {
     background-color: rgb(56, 56, 56);
     color: white;
     margin-left: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-left: 18px;
     padding-right: 5px;
     padding-block: 29px;
     max-height: 25px;
-}
-
-#id-type-select {
+  }
+  
+  #id-type-select {
     border: none;
     background-color: #ffffff;
     padding: 4px;
@@ -148,26 +133,30 @@
     border-radius: 5px;
 }
 
+.logoNavBar {
+background-color: #ddbd83;
+border-radius: 25px;
+padding: 45px;
+height: 100px;
+margin-right: 120px;
+}
+
 .createBreed-button {
-    margin-left: 20px;
-    padding: 10px 30px;
-    font-size: 25px;
-    border-radius: 8px;
-    background-color: rgb(209, 59, 59);
-    transition: all 0.25s ease-in-out;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
-    font-weight: 700;
+  margin-left: 100px;
+  padding: 10px 30px;
+  font-size: 25px;
+  border-radius: 5px;
+  background-color: rgb(199, 29, 29);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  font-weight: 700;
 }
 
 .createBreed-button:hover {
-    
-    background-color: rgb(192, 112, 66);
-    cursor: pointer;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.45);
+  background-color: rgb(224, 141, 45);
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.45);
 }
-
-
-
   
   #id-type-select {
     min-width: 100px;

@@ -1,13 +1,12 @@
 .backgroundForm {
     background-image: url('../../Assets/BackgroundPaws.png');
-    background-color: rgb(61, 61, 61);
+    background-color: #f5f5f5;
     background-size: 30%;
     padding-block: 50px;
-    /* rgb(53, 38, 20); */
 }
 
 form {
-    border: 2px solid #b1aeae;
+  border: .5px solid #000000;
     padding: 20px;
     max-width: 900px;
     margin: auto;
@@ -21,9 +20,19 @@ form {
     text-align: center;
   }
 
+  .red {
+    font-weight: 700;
+    color: red
+  }
+
+  .green {
+    font-weight: 700;
+    color: green
+  }
+
   .formSeparator {
     border: none;
-    border-top: 2px solid #afafaf;
+    border-top: 2px solid #000000;
     margin: 20px -20px;
   }
 
@@ -78,8 +87,6 @@ form {
     box-sizing: border-box;
   }
 
-
-
   .selected-temperaments li {
     display: inline-block;
     margin-right: 10px;
@@ -132,7 +139,7 @@ form {
   background-color: rgb(236, 194, 159);
   border: none;
   padding-inline: 50px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .clearTemperamentsButton:hover {

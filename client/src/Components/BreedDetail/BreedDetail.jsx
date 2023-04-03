@@ -73,7 +73,7 @@ const BreedDetail = () => {
                 </div>
 
                 <div className="imageBackground">
-                    <img className="dogImg"src={breed.image.url} alt={breed.name} />
+                    <img className="dogImg" src={breed.image.url} alt={breed.name} />
                 </div>
                 
                     

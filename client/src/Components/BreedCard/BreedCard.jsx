@@ -25,8 +25,8 @@ const BreedCard = ({id, name, img, temperament, weight, life_span}) => {
                 <img src = {img} alt = {name} className = "breedPicture"/>
                 <div className="data">
                     <p> {temperamentText}</p>
-                    <p> Average life span: {getAverageLifeSpan(life_span)}</p>
-                    <p> Weight: {getAverageWeight(weight)} kg</p>
+                    <p> Average life span: {getAverageLifeSpan(life_span)} years</p>
+                    <p> Average weight: {getAverageWeight(weight)} kg</p>
                 </div>
             </div>
         </Link>
