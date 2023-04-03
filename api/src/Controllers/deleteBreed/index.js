@@ -8,6 +8,3 @@ const deleteBreed = async (id) => {
   };
   
   module.exports = {deleteBreed};
-  
-
-//   localhost:3001/deleteDogs/46f4b3b9-6b4d-4744-8dc6-2db7fddae89c
