@@ -131,11 +131,11 @@ export default function Form() {
     }    
 
     function validate() {
-      if (name === "" || !/^[a-zA-Z]+$/.test(name)) {
-        setStatusColor("red")
-        setStatus("Please enter a valid name using only letters.");
-        return false;
-      }
+        if (name === "" || !/^[a-zA-Z]+$/.test(name)) {
+          setStatusColor("red")
+          setStatus("Please enter a valid name using only letters.");
+          return false;
+        }
       
         if (
           minWeight === "" ||

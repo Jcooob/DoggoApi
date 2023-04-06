@@ -19,7 +19,7 @@ const Home = () => {
     const [filteredBreeds, setFilteredBreeds] = useState([]); // Razas filtradas por temperamentos
     const [selectedTemperaments, setSelectedTemperaments] = useState([]) // Temperamentos seleccionados
     const [currentPage, setCurrentPage] = useState(1); // Selector de pagina
-    const [resultsPerPage, setResultsPerPage] = useState(8); // Elementos mostrados en pagina
+    const [resultsPerPage, setResultsPerPage] = useState(9); // Elementos mostrados en pagina
     const [activeSort, setActiveSort] = useState("nameAsc"); // Selector de ordenamiento
 
     const breeds = useSelector((state) => state.dogs); // Se traen del estado global las razas de perros
